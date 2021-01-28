@@ -56,7 +56,7 @@ The key steps in the project are shown below with supporting images.
 ![Completed experiment run](Images/exp_complete.PNG)
 *figure 2: completed automl experiment*
 
-*   The ``VotingEnsemble`` model was identified to be the best with ``91.86%`` accuracy.
+*   The ``VotingEnsemble`` model was identified to be the best with ``91.87%`` accuracy.
 
 ![Best model](Images/best_model.PNG)
 *figure 3: best model ready for deployment*
@@ -65,26 +65,90 @@ The key steps in the project are shown below with supporting images.
 
 The best model was deployed using an ``Azure Container Instance``. ``Authentication`` was also enabled. 
 
+![Deployed Model](Images/model_deployed.PNG)
+*figure 4: deployed model*
+
+
 #### Step 4: Enabling Application Insights
 
-Although, this could have been configured prior to deployment. However, it was done after deployment. The ``logs.py`` script was updated with the deployed model name and ``enable_app_insights`` was set to ``True`` before execution.
+*   Although, this could have been configured prior to deployment. However, it was done after deployment. The ``logs.py`` script was updated with the deployed model name and ``enable_app_insights`` was set to ``True`` before execution.
 
 ![Application Insight](Images/app_insight_enabled.PNG)
-*figure 4: application insight enabled*
+*figure 5: application insight enabled*
+
+*   To access the enabled application insight to analyse and visualize performance, click the ``Application Insights uri`` link.
 
 ![Logging Script](Images/logs_script.PNG)
-*figure 5: ``logs.py`` script execution*
+*figure 6: ``logs.py`` script execution*
 
-#### Step 5:Swagger documentation and Benchmarking
+#### Step 5:Swagger documentation
 
-#### Step 6: Consuming model endpoints
+*   A ``swagger.json`` file provided by the deployed model is downloaded and placed in the same folder with ``swagger.sh`` and ``serve.py`` scripts. 
+
+*   Executing the ``swagger.sh`` script downloads the latest ``swagger-ui`` container to launch Swagger.
+
+*   Executing the ``serve.py`` script protects against Cross Origin Resource Sharing (CORS) and needs to be in the same directory with ``swagger.json``.
+
+*   Opening a browser with the used localhost server port should return a Swagger API documentation for our model.
+
+![Swagger API documentation](Images/swagger_runs.PNG)
+*figure 7: swagger API documentation*
+
+#### Step 6: Consuming model endpoints and Benchmarking
+
+*   Once the model is deployed, we can interact with the trained model using the ``endpoint.py`` script. Modified ``endpoint.py`` script contained ``scoring_uri`` and ``key`` matching the deployed model's ``RESTful API endpoint`` and ``Primary key`` respectively.
+
+*   Execution of the script should return a json-formatted output.
+
+![Endpoint output](Images/endpoint_output.PNG)
+*figure 8: JSON output from the model*
+
+*   The ``benchmark.sh`` file was also modified with the ``RESTful API endpoint`` and ``Primary key`` of the deployed model before execution.
+
+*   Apache Benchmarking is used to benchmark the deployed model (HTTP REST API endpoint).
+
+![Apache Benchmarking](Images/benchmark_01.PNG)
+*figure 9: apache benchmark output 01*
+
+![Apache Benchmarking](Images/benchmark_02.PNG)
+*figure 10: apache benchmark output 02*
+
+*   The above shows that Apache Benchmarking ``ab`` runs against the HTTP API using authentication keys to retrieve performance results including number of failed requests and time per requests.
 
 #### Step 7: Creating and Publishing a pipeline using Python SDK
 
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+*   The Jupyter Notebook ``aml-pipelines-with-automated-machine-learning-step.ipynb`` used in creating the pipeline was uploaded to the Azure portal.
+
+*   ``config.json`` housing the details of the workspace, subscription, and resource group was made available in the same directory with the notebook.
+
+*   Cells were updated accordingly before running and creating the pipeline.
+
+![Banking Dataset with AutoML](Images/banking_dataset_automl.PNG)
+*figure 11: bank marketing dataset with the automl module*
+
+![Running Pipeline](Images/pipeline_created.PNG)
+*figure 12: pipeline created*
+
+![Created Pipeline](Images/pipeline_completed.PNG)
+*figure 13: pipeline completed*
+
+*   Published model exposes the REST endpoint with and ``ACTIVE`` status.
+
+![Published Pipeline](Images/pipeline_active.PNG)
+*figure 14: published pipeline overview*
+
+*   ``RunDetails`` widget in Jupyter notebook shown as completed.
+
+![RunDetails](Images/pipeline_run_widget.PNG)
+*figure 15: run details widget*
 
 ## Screen Recording
-*TODO* Provide a link to a screen recording of the project in action. Remember that the screencast should demonstrate:
+
+Here is a [screencast](https://www.youtube.com/watch?v=r_G3IrM05do) of this project showing key steps in the process.
 
 ## Standout Suggestions
-*TODO (Optional):* This is where you can provide information about any standout suggestions that you have attempted.
+
+*   Address class imbalance to prevent model bias.
+*   Increase experiment timeout duration. This would allow for more model experimentation, but at expense of cost.
+*   Try a different primary metric. Sometimes accuracy alone doesn't represent true picture of the model's performance. Recall or precision are more specific metrics in related classification problems.
+*   Tweak some other AutoML confirguration parameters including number of cross validation to reduce model bias.
