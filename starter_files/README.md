@@ -113,7 +113,7 @@ The best model was deployed using an ``Azure Container Instance``. ``Authenticat
 ![Apache Benchmarking](Images/benchmark_02.PNG)
 *figure 10: apache benchmark output 02*
 
-*   The above shows that Apache Benchmarking ``ab`` runs against the HTTP API using authentication keys to retrieve performance results including number of failed requests and time per requests.
+*   The above shows that Apache Benchmarking ``ab`` runs against the HTTP API using authentication keys to retrieve performance results including number of time taken for test, failed requests, time per requests, etc.
 
 #### Step 7: Creating and Publishing a pipeline using Python SDK
 
@@ -132,7 +132,7 @@ The best model was deployed using an ``Azure Container Instance``. ``Authenticat
 ![Created Pipeline](Images/pipeline_completed.PNG)
 *figure 13: pipeline completed*
 
-*   Published model exposes the REST endpoint with and ``ACTIVE`` status.
+*   Published model exposes the REST endpoint with an ``ACTIVE`` status.
 
 ![Published Pipeline](Images/pipeline_active.PNG)
 *figure 14: published pipeline overview*
