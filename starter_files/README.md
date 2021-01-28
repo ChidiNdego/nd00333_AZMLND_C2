@@ -47,16 +47,16 @@ The key steps in the project are shown below with supporting images.
 #### Step 2: Creating an Automated ML experiment
 
 *   Register the dataset in the Azure ML studio
-
-![Bank Marketing Dataset](Images/reg_dataset.png)
+![Bank Marketing Dataset](Images/reg_dataset.PNG)
+*figure 1: registered dataset in azure ml studio*
 
 *   Create an AutoML run, configure a compute cluster with VM size ``Standard_DS12_v2`` with its settings. Run the experiment using a ``Classification`` model. Experiment took about 23 minutes to complete.
-
-![Completed experiment run](Images/exp_complete.png)
+![Completed experiment run](Images/exp_complete.PNG)
+*figure 2: completed automl experiment*
 
 *   The ``VotingEnsemble`` model was identified to be the best with ``91.86%`` accuracy.
-
-![Best model](Images/best_model.png)
+![Best model](Images/best_model.PNG)
+*figure 3: best model ready for deployment*
 
 #### Step 3: Deploying the best model
 
