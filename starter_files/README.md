@@ -47,20 +47,33 @@ The key steps in the project are shown below with supporting images.
 #### Step 2: Creating an Automated ML experiment
 
 *   Register the dataset in the Azure ML studio
+
 ![Bank Marketing Dataset](Images/reg_dataset.PNG)
 *figure 1: registered dataset in azure ml studio*
 
 *   Create an AutoML run, configure a compute cluster with VM size ``Standard_DS12_v2`` with its settings. Run the experiment using a ``Classification`` model. Experiment took about 23 minutes to complete.
+
 ![Completed experiment run](Images/exp_complete.PNG)
 *figure 2: completed automl experiment*
 
 *   The ``VotingEnsemble`` model was identified to be the best with ``91.86%`` accuracy.
+
 ![Best model](Images/best_model.PNG)
 *figure 3: best model ready for deployment*
 
 #### Step 3: Deploying the best model
 
+The best model was deployed using an ``Azure Container Instance``. ``Authentication`` was also enabled. 
+
 #### Step 4: Enabling Application Insights
+
+Although, this could have been configured prior to deployment. However, it was done after deployment. The ``logs.py`` script was updated with the deployed model name and ``enable_app_insights`` was set to ``True`` before execution.
+
+![Application Insight](Images/app_insight_enabled.PNG)
+*figure 4: application insight enabled*
+
+![Logging Script](Images/logs_script.PNG)
+*figure 5: ``logs.py`` script execution*
 
 #### Step 5:Swagger documentation and Benchmarking
 
