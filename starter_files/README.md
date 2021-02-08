@@ -194,3 +194,8 @@ Here is a [screencast](https://www.youtube.com/watch?v=r_G3IrM05do) of this proj
 *   Increase experiment timeout duration. This would allow for more model experimentation, but at expense of cost.
 *   Try a different primary metric. Sometimes accuracy alone doesn't represent true picture of the model's performance. Recall or precision are more specific metrics in related classification problems.
 *   Tweak some other AutoML confirguration parameters including number of cross validation to reduce model bias.
+
+### Extra useful links
+
+*   [Azure MLOps](https://azure.microsoft.com/en-us/services/machine-learning/mlops/)
+*   [Awesome ReadME Styles](https://github.com/matiassingers/awesome-readme)
