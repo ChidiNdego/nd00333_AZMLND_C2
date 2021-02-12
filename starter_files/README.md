@@ -58,7 +58,7 @@ The key steps in the project are shown below with supporting images:
 ![Bank Marketing Dataset](Images/reg_dataset.PNG)
 *figure 1: registered dataset in azure ml studio*
 
-*   Create an AutoML run, configure a compute cluster with a Virtual Machine size `Standard_DS12_v2`and  minimum number of nodes set at `1`. 
+*   Create an AutoML run, configure a compute cluster with a Virtual Machine size `Standard_DS12_v2`and  minimum number of nodes set at `1` to prevent node start-up time when called to use. 
 
 ![Creating an AutoML run](Images/creating_automl.PNG)
 *figure 2: creating an automl run*
@@ -66,12 +66,12 @@ The key steps in the project are shown below with supporting images:
 ![Compute Cluster](Images/compute_cluster.PNG)
 *figure 3: details of the compute cluster*
 
-*   Run the experiment using a ``Classification`` model, ``Exit criterion`` set at ``1`` and ``Concurrency`` of ``5``. Experiment took about 23 minutes to complete.
+*   Run the experiment using a `Classification` model, `Exit criterion` set at `1` and `Concurrency` of `5`. Experiment took about 23 minutes to complete.
 
 ![Completed experiment run](Images/exp_complete.PNG)
 *figure 4: completed automl experiment*
 
-*   The ``VotingEnsemble`` model was identified to be the best with ``91.87%`` accuracy.
+*   The `VotingEnsemble` model was identified to be the best with `91.87%` accuracy.
 
 ![Best model](Images/best_model.PNG)
 *figure 5: best model ready for deployment*
@@ -79,12 +79,12 @@ The key steps in the project are shown below with supporting images:
 
 #### Step 3: Deploying the best model
 
-The best model was deployed using an ``Azure Container Instance``. Authentication is crucial for the continuous flow of operations, as Continuous Integration and Delivery systems rely on uninterrupted flows; hence, enabling ``Authentication``.
+The best model was deployed using an `Azure Container Instance`. Authentication is crucial for the continuous flow of operations, as Continuous Integration and Delivery systems rely on uninterrupted flows; hence, enabling `Authentication`.
 
 ![Deployment form](Images/deployment_form.PNG)
 *figure 6: deployment form*
 
-A successsfully deployed model would have its deployed status marked ``SUCCEEDED`` as seen below.
+A successsfully deployed model would have its deployed status marked `SUCCEEDED` as seen below.
 
 ![Deployed Model](Images/model_deployed.PNG)
 *figure 7: deployed model*
@@ -92,7 +92,7 @@ A successsfully deployed model would have its deployed status marked ``SUCCEEDED
 
 #### Step 4: Enabling Application Insights
 
-*   Although, this could have been configured prior to deployment. However, it was done after deployment. The ``logs.py`` script was updated with the deployed model name and ``enable_app_insights`` was set to ``True`` before execution.
+*   Although, this could have been configured prior to deployment. However, it was done after deployment. The `logs.py` script was updated with the deployed model name and `enable_app_insights` was set to `True` before execution.
 
 ![Application Insights enabled](Images/app_insight_enabled.PNG)
 *figure 8: application insight enabled*
@@ -100,9 +100,9 @@ A successsfully deployed model would have its deployed status marked ``SUCCEEDED
 *   Expected return after executing the log script is shown below:
 
 ![Logging Script](Images/logs_script.PNG)
-*figure 9: ``logs.py`` script execution*
+*figure 9: `logs.py` script execution*
 
-*   To access the enabled application insight to analyse and visualize performance, click the ``Application Insights uri`` link. You should have something similar to this:
+*   To access the enabled application insight to analyse and visualize performance, click the `Application Insights uri` link. You should have something similar to this:
 
 ![Application Insights](Images/logging.PNG)
 *figure 10: application insights in azure*
@@ -110,11 +110,11 @@ A successsfully deployed model would have its deployed status marked ``SUCCEEDED
 
 #### Step 5:Swagger documentation
 
-*   A ``swagger.json`` file provided by the deployed model is downloaded and placed in the same folder with ``swagger.sh`` and ``serve.py`` scripts. 
+*   A `swagger.json` file provided by the deployed model is downloaded and placed in the same folder with the `swagger.sh` and `serve.py` scripts. 
 
-*   Executing the ``swagger.sh`` script downloads the latest ``swagger-ui`` container to launch Swagger.
+*   Executing the `swagger.sh` script downloads the latest `swagger-ui` container to launch Swagger.
 
-*   Executing the ``serve.py`` script protects against Cross Origin Resource Sharing (CORS) and needs to be in the same directory with ``swagger.json``.
+*   Executing the `serve.py` script protects against Cross Origin Resource Sharing (CORS) and needs to be in the same directory with `swagger.json`.
 
 *   Opening a browser with the used localhost server port should return a Swagger API documentation for our model.
 
@@ -123,14 +123,14 @@ A successsfully deployed model would have its deployed status marked ``SUCCEEDED
 
 #### Step 6: Consuming model endpoints and Benchmarking
 
-*   Once the model is deployed, we can interact with the trained model using the ``endpoint.py`` script. Modified ``endpoint.py`` script contained ``scoring_uri`` and ``key`` matching the deployed model's ``RESTful API endpoint`` and ``Primary key`` respectively.
+*   Once the model is deployed, we can interact with the trained model using the `endpoint.py` script. Modified `endpoint.py` script contained `scoring_uri` and `key` matching the deployed model's `RESTful API endpoint` and `Primary key` respectively.
 
 *   Execution of the script should return a json-formatted output.
 
 ![Endpoint output](Images/endpoint_output.PNG)
 *figure 12: JSON output from the model*
 
-*   The ``benchmark.sh`` file was also modified with the ``RESTful API endpoint`` and ``Primary key`` of the deployed model before execution.
+*   The `benchmark.sh` file was also modified with the `RESTful API endpoint` and `Primary key` of the deployed model before execution.
 
 *   Apache Benchmarking is used to benchmark the deployed model (HTTP REST API endpoint).
 
@@ -140,13 +140,13 @@ A successsfully deployed model would have its deployed status marked ``SUCCEEDED
 ![Apache Benchmarking](Images/benchmark_02.PNG)
 *figure 14: apache benchmark output 02*
 
-*   The above shows that Apache Benchmarking ``ab`` runs against the HTTP API using authentication keys to retrieve performance results including number of time taken for test, failed requests, time per requests, etc.
+*   The above shows that Apache Benchmarking `ab` runs against the HTTP API using authentication keys to retrieve performance results including number of time taken for test, failed requests, time per requests, etc.
 
 #### Step 7: Creating and Publishing a pipeline using Python SDK
 
-*   The Jupyter Notebook ``aml-pipelines-with-automated-machine-learning-step.ipynb`` used in creating the pipeline was uploaded to the Azure portal.
+*   The Jupyter Notebook `aml-pipelines-with-automated-machine-learning-step.ipynb` used in creating the pipeline was uploaded to the Azure portal.
 
-*   ``config.json`` housing the details of the workspace, subscription, and resource group was made available in the same directory with the notebook.
+*   `config.json` housing the details of the workspace, subscription, and resource group was made available in the same directory with the notebook.
 
 *   Cells were updated accordingly before running and creating the pipeline.
 
@@ -159,7 +159,7 @@ A successsfully deployed model would have its deployed status marked ``SUCCEEDED
 ![Created Pipeline](Images/pipeline_completed.PNG)
 *figure 17: pipeline completed*
 
-*   Published model exposes the REST endpoint with an ``ACTIVE`` status.
+*   Published model exposes the REST endpoint with an `ACTIVE` status.
 
 ![Published Pipeline](Images/pipeline_active.PNG)
 *figure 18: published pipeline overview*
@@ -169,7 +169,7 @@ A successsfully deployed model would have its deployed status marked ``SUCCEEDED
 ![Pipeline Endpoint](Images/pipeline_endpoint.PNG)
 *figure 19: deployed pipeline endpoint in azure ml studio*
 
-*   ``RunDetails`` widget in Jupyter notebook shown as completed.
+*   `RunDetails` widget in Jupyter notebook shown as completed.
 
 ![RunDetails](Images/pipeline_run_widget.PNG)
 *figure 20: run details widget*
@@ -185,7 +185,7 @@ Here is a [screencast](https://www.youtube.com/watch?v=r_G3IrM05do) of this proj
 ## Standout Suggestions
 
 *   Apache benchmarking tool was used to load-test the model and track its performance.
-*   Authentication by the creation of a ``service principal`` user role account.
+*   Authentication by the creation of a `service principal` user role account.
 *   Creating a compute cluster, training/running an auto ml experiment, and deployment can be done using Python SDK.
 *   Enabling application insights can be done before or after deployment.
 *   Deployment and runtime errors can be easier to diagnose by deploying locally in a container. 
